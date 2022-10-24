@@ -11,6 +11,9 @@ const OP_path = path.join(OP_DIR, "prof.html");
 
 const render = require("./lib/htmlRend")
 
+// change employeeArr to avoid the plague
+let employeeArr = []
+
 inquirer.prompt([
     {
         type: `input`,
@@ -25,7 +28,7 @@ inquirer.prompt([
     {
         type: `input`,
         name: `officeNumber`,
-        message: `Team Manager name if you please?`
+        message: `Team Manager office number if you please?`
     },
     
     {
@@ -35,3 +38,10 @@ inquirer.prompt([
     },
     
 ])
+
+.then(manager => {
+    console.log(manager)
+    let newManager = new Manager(manager.name, manager.id, manager.officeNumber, manager.email)
+    employeeArr.push(newManager)
+    console.log(employeeArr)
+})

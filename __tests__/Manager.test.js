@@ -25,6 +25,12 @@ test("Test for email with constructor arguments", () =>{
 
 test("'Role'ing for Initiative", () =>{
     const getRole = "Manager";
-    const smee = new Manager("Hermaeus", 9, "hermes@gmail.com")
+    const smee = new Manager("Hermaeus", 9, "hermes@gmail.com", getRole)
     expect(smee.getRole).toBe(getRole)
+});
+
+test("'Role'ing for Initiative", () =>{
+    const getOfficeNumber = 1;
+    const smee = new Manager("Hermaeus", 9, "hermes@gmail.com", getOfficeNumber)
+    expect(smee.getOfficeNumber).toBe(getOfficeNumber)
 });

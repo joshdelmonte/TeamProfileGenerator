@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/joshdelmonte/ProfileGeneratorEquipe/issues"
   },
-  "homepage": "https://github.com/joshdelmonte/ProfileGeneratorEquipe#readme"
+  "homepage": "https://github.com/joshdelmonte/ProfileGeneratorEquipe#readme",
+  "dependencies": {
+    "bootstrap-icons": "^1.9.1"
+  }
 }

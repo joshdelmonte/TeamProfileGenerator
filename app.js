@@ -6,12 +6,33 @@ const inquirer = require("inquire");
 const path = require("path");
 const fs = require("fs");
 
+const fse = requre('fs-extra');
+
+// fse.outputfile('tmp/test.txt', 'Hey')
+//     .then(() => {
+//         console.log('File Saved');
+//     })
+//     .catch(err => {
+//         console.error(err)
+//     })
+
 const OP_DIR = path.resolve(__dirname, "output");
-const OP_path = path.join(OP_DIR, "prof.html");
+const oppath = path.join(OP_DIR, "prof.html");
 
 const render = require("./lib/htmlRend")
 
 let employArr = []
+
+const etFinum = () => {
+    let profHtml = render(employArr)
+    fse.outputfile('dist/prof.html', profHtml)
+    .then(() => {
+        console.log('File Saved');
+    })
+    .catch(err => {
+        console.error(err)
+    })
+}
 
 const continuedQueue = () => {
     inquirer.prompt([{
@@ -24,7 +45,7 @@ const continuedQueue = () => {
         if (SiOrNo.SiOrNo === 'yes') {
             intAuEng()
         } else (
-            console.log('And we are done! Now we carry on.')
+            etFinum()
         )
     })
 }
@@ -64,7 +85,7 @@ const intAuEng = () => {
             }
                 .then(enginar => {
                     console.log(enginar)
-                    let newEnginar = newEnginar(enginar.name, enginar.id, enginar.email, enginar.github)
+                    let newEnginar = new Engineer(enginar.name, enginar.id, enginar.email, enginar.github)
                     employArr.push(newEnginar)
                     console.log(employArr)
                     continuedQueue()
@@ -72,8 +93,35 @@ const intAuEng = () => {
         ])
     } else if (answer.intAuEng === 'Intern ') {
         inquirer.prompt([{
+            {
+                type: `input`,
+                name: `name`,
+                message: `Team Intern name if you please?`
+            },
+            {
+                type: `input`,
+                name: `id`,
+                message: `Team Intern ID if you please?`
+            }, 
+            {
+                type: `input`,
+                name: `email`,
+                message: `Team Engineer office email if you please?`
+            },
             
-        }])
+            {
+                type: `input`,
+                name: `school`,
+                message: `Team Interns former school if you please?`
+            }
+        ])
+                .then(lintern => {
+                    console.log(lintern)
+                    let novaIntern = new Intern(lintern.name, lintern.id, lintern.email, lintern.school)
+                    employArr.push(novaIntern)
+                    console.log(employArr)
+                    continuedQueue()
+                })
     }
 })
 

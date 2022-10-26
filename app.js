@@ -2,11 +2,11 @@ const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const inquirer = require("inquire");
+const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
-const fse = requre('fs-extra');
+const fse = require('fs-extra');
 
 // fse.outputfile('tmp/test.txt', 'Hey')
 //     .then(() => {
@@ -55,7 +55,7 @@ const intAuEng = () => {
         name: 'intAuEng',
         type: 'list',
         message: 'Do we need to add Interns or Engineers today?',
-        choices: ('Intern', 'Engineer')
+        choices: ['Intern', 'Engineer']
 }])
 
 .then(answer => {
@@ -91,7 +91,7 @@ const intAuEng = () => {
                     continuedQueue()
                 })
         ])
-    } else if (answer.intAuEng === 'Intern ') {
+    } else{
         inquirer.prompt([
             {
                 type: `input`,
@@ -124,7 +124,7 @@ const intAuEng = () => {
                 })
     }
 })
-
+}
 
 inquirer.prompt([
     {
@@ -157,4 +157,4 @@ inquirer.prompt([
     employArr.push(novaJefe)
     console.log(employArr)
     intAuEng()
-})}
+})

@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/joshdelmonte/ProfileGeneratorEquipe#readme",
   "dependencies": {
-    "bootstrap-icons": "^1.9.1"
+    "bootstrap-icons": "^1.9.1",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^8.0.0"
   }
 }

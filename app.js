@@ -92,7 +92,7 @@ const intAuEng = () => {
                 })
         ])
     } else if (answer.intAuEng === 'Intern ') {
-        inquirer.prompt([{
+        inquirer.prompt([
             {
                 type: `input`,
                 name: `name`,
@@ -157,4 +157,4 @@ inquirer.prompt([
     employArr.push(novaJefe)
     console.log(employArr)
     intAuEng()
-})
+})}

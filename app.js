@@ -11,8 +11,72 @@ const OP_path = path.join(OP_DIR, "prof.html");
 
 const render = require("./lib/htmlRend")
 
-// change employeeArr to avoid the plague
-let employeeArr = []
+let employArr = []
+
+const continuedQueue = () => {
+    inquirer.prompt([{
+        name: 'SiOrNo',
+        type: 'list',
+        message: 'Did we need any additional team mates?',
+        choices: ['yes', 'no']
+    }])
+    .then(SiOrNo => {
+        if (SiOrNo.SiOrNo === 'yes') {
+            intAuEng()
+        } else (
+            console.log('And we are done! Now we carry on.')
+        )
+    })
+}
+
+const intAuEng = () => {
+    inquirer.prompt([{
+        name: 'intAuEng',
+        type: 'list',
+        message: 'Do we need to add Interns or Engineers today?',
+        choices: ('Intern', 'Engineer')
+}])
+
+.then(answer => {
+    console.log(answer)
+    if(answer.intAuEng === 'Engineer') {
+        inquirer.prompt([
+            {
+                type: `input`,
+                name: `name`,
+                message: `Team Engineer name if you please?`
+            },
+            {
+                type: `input`,
+                name: `id`,
+                message: `Team Engineer ID if you please?`
+            }, 
+            {
+                type: `input`,
+                name: `email`,
+                message: `Team Engineer office email if you please?`
+            },
+            
+            {
+                type: `input`,
+                name: `github`,
+                message: `Team Engineer github if you please?`
+            }
+                .then(enginar => {
+                    console.log(enginar)
+                    let newEnginar = newEnginar(enginar.name, enginar.id, enginar.email, enginar.github)
+                    employArr.push(newEnginar)
+                    console.log(employArr)
+                    continuedQueue()
+                })
+        ])
+    } else if (answer.intAuEng === 'Intern ') {
+        inquirer.prompt([{
+            
+        }])
+    }
+})
+
 
 inquirer.prompt([
     {
@@ -41,7 +105,8 @@ inquirer.prompt([
 
 .then(manager => {
     console.log(manager)
-    let newManager = new Manager(manager.name, manager.id, manager.officeNumber, manager.email)
-    employeeArr.push(newManager)
-    console.log(employeeArr)
+    let novaJefe = new Manager(manager.name, manager.id, manager.officeNumber, manager.email)
+    employArr.push(novaJefe)
+    console.log(employArr)
+    intAuEng()
 })

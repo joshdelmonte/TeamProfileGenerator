@@ -44,11 +44,10 @@ const continuedQueue = () => {
     .then(SiOrNo => {
         if (SiOrNo.SiOrNo === 'yes') {
             intAuEng()
-        } else (
-            etFinum(htmlRend(employArr))
-        )
+        } else {
+            etFinum()
+        }
     })
-}
 
 const intAuEng = () => {
     inquirer.prompt([{
@@ -83,14 +82,16 @@ const intAuEng = () => {
                 name: `github`,
                 message: `Team Engineer github if you please?`
             }
-                .then(enginar => {
-                    console.log(enginar)
-                    let newEnginar = new Engineer(enginar.name, enginar.id, enginar.email, enginar.github)
-                    employArr.push(newEnginar)
+        ])
+                .then(engineer => {
+                    console.log(engineer)
+                    let newEngineer = new Engineer(engineer.name, engineer.id, engineer.email, engineer.github)
+                    employArr.push(newEngineer)
                     console.log(employArr)
                     continuedQueue()
                 })
-        ])
+            
+        
     } else{
         inquirer.prompt([
             {
@@ -106,7 +107,7 @@ const intAuEng = () => {
             {
                 type: `input`,
                 name: `email`,
-                message: `Team Engineer office email if you please?`
+                message: `Team Intern office email if you please?`
             },
             
             {
@@ -158,3 +159,5 @@ inquirer.prompt([
     console.log(employArr)
     intAuEng()
 })
+    
+}

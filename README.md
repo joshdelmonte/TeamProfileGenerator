@@ -32,7 +32,7 @@ Team Profile Generator
 
 Here's a video of how to use this team profile generator:
 
-![](https://drive.google.com/file/d/1IGGIwwsmGpTWh9Aj3iobgzGurcqer1uX/view)
+![](https://drive.google.com/file/d/1erIoGeLfD6JzYm5RcPvE_cKRVWVPywj3/view)
 
 
 ## License

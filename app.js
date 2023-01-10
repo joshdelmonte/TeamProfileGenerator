@@ -8,24 +8,13 @@ const fs = require("fs");
 
 const fse = require('fs-extra');
 
-// fse.outputfile('tmp/test.txt', 'Hey')
-//     .then(() => {
-//         console.log('File Saved');
-//     })
-//     .catch(err => {
-//         console.error(err)
-//     })
-
-const OP_DIR = path.resolve(__dirname, "output");
-const oppath = path.join(OP_DIR, "prof.html");
-
 const render = require("./lib/htmlRend")
 
 let employArr = []
 
 const etFinum = () => {
     let profHtml = render(employArr)
-    fse.outputfile('dist/prof.html', profHtml)
+    fse.outputfile('prof.html', profHtml)
     .then(() => {
         console.log('File Saved');
     })
@@ -42,12 +31,14 @@ const continuedQueue = () => {
         choices: ['yes', 'no']
     }])
     .then(SiOrNo => {
+        console.log(SiOrNo)
         if (SiOrNo.SiOrNo === 'yes') {
             intAuEng()
         } else {
             etFinum()
         }
     })
+}
 
 const intAuEng = () => {
     inquirer.prompt([{
@@ -55,7 +46,7 @@ const intAuEng = () => {
         type: 'list',
         message: 'Do we need to add Interns or Engineers today?',
         choices: ['Intern', 'Engineer']
-}])
+    }])
 
 .then(answer => {
     console.log(answer)
@@ -127,6 +118,7 @@ const intAuEng = () => {
 })
 }
 
+const manager = () => {
 inquirer.prompt([
     {
         type: `input`,
@@ -141,9 +133,8 @@ inquirer.prompt([
     {
         type: `input`,
         name: `officeNumber`,
-        message: `Team Manager office number if you please?`
+        message: `Please enter the Team Manager's office number:`
     },
-    
     {
         type: `input`,
         name: `email`,
@@ -157,7 +148,12 @@ inquirer.prompt([
     let novaJefe = new Manager(manager.name, manager.id, manager.officeNumber, manager.email)
     employArr.push(novaJefe)
     console.log(employArr)
-    intAuEng()
+    continuedQueue()
 })
-    
-}
+}   
+
+
+manager()
+
+
+// const novaJefe = new Manager('Jefe', 1, 1234567890, '

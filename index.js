@@ -8,19 +8,24 @@ const fs = require("fs");
 
 const fse = require('fs-extra');
 
-const render = require("./lib/htmlRend")
+const render = require("./temp/template.js");
 
 let employArr = []
 
 const etFinum = () => {
     let profHtml = render(employArr)
-    fse.outputfile('prof.html', profHtml)
-        .then(() => {
-            console.log('File Saved');
-        })
-        .catch(err => {
-            console.error(err)
-        })
+    console.log(profHtml)
+    fs.writeFile('./index.html', profHtml, (err) =>
+  err ? console.error(err) : console.log('Success!')
+);
+
+    // fs.writeFile('./index.html', profHtml)
+    //     .then(() => {
+    //         console.log('File Saved');
+    //     })
+    //     .catch(err => {
+    //         console.error(err)
+    //     })
 }
 
 const continuedQueue = () => {
